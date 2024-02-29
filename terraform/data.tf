@@ -25,6 +25,10 @@ data "aws_iam_policy" "AmazonEC2FullAccess" {
   name = "AmazonEC2FullAccess"
 }
 
+data "aws_iam_policy" "AmazonS3FullAccess" {
+  name = "AmazonS3FullAccess"
+}
+
 data "aws_iam_policy_document" "ec2_role" {
   statement {
     effect = "Allow"
