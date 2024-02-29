@@ -36,7 +36,7 @@ resource "aws_instance" "this" {
   ebs_optimized           = true
   iam_instance_profile    = aws_iam_instance_profile.this.name
   instance_type           = "t2.micro"
-  key_name                = "Verity53Sydneyppk"
+  key_name                = "CIaCTS_key"
   monitoring              = true
   subnet_id               = module.vpc.private_subnets[1]
 
