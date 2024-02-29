@@ -37,6 +37,7 @@ resource "aws_instance" "this" {
   key_name                    = "CIaCTS_key"
   monitoring                  = true
   associate_public_ip_address = true
+  subnet_id                   = module.vpc.public_subnets[1]
 
   vpc_security_group_ids       = [aws_security_group.this.id]
 
