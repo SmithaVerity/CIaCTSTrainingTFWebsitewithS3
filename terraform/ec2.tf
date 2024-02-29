@@ -5,13 +5,6 @@ resource "aws_iam_instance_profile" "this" {
   tags = var.tags
 }
 
-resource "aws_iam_policy" "s3_access" {
-  name   = "${var.environment}_s3_access"
-  policy = data.aws_iam_policy_document.s3_access.json
-
-  tags = var.tags
-}
-
 resource "aws_iam_role" "ec2_role" {
   name = "${var.environment}_ec2_role"
 
@@ -32,11 +25,6 @@ resource "aws_iam_role_policy_attachment" "AmazonSSMManagedInstanceCore" {
 
 resource "aws_iam_role_policy_attachment" "AmazonEC2FullAccess" {
   policy_arn = data.aws_iam_policy.AmazonEC2FullAccess.arn
-  role       = aws_iam_role.ec2_role.name
-}
-
-resource "aws_iam_role_policy_attachment" "s3_access" {
-  policy_arn = aws_iam_policy.s3_access.arn
   role       = aws_iam_role.ec2_role.name
 }
 
