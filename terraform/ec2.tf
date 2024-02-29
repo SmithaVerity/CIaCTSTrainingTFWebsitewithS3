@@ -32,8 +32,6 @@ resource "aws_iam_role_policy_attachment" "s3_access" {
 
 resource "aws_instance" "this" {
   ami                     = data.aws_ami.ubuntu.id
-  disable_api_termination = false
-  ebs_optimized           = true
   iam_instance_profile    = aws_iam_instance_profile.this.name
   instance_type           = "t2.micro"
   key_name                = "CIaCTS_key"
@@ -50,8 +48,6 @@ resource "aws_instance" "this" {
 
   tags = merge(var.tags, {
     "Name"        = var.environment
-    "backup"      = true
-    "Patch Group" = "A"
   })
 
   volume_tags = merge(var.tags, { "Name" = "${var.environment}_vol" })
