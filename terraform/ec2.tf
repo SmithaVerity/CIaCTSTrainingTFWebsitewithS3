@@ -20,6 +20,11 @@ resource "aws_iam_role" "ec2_role" {
   tags = var.tags
 }
 
+resource "aws_iam_role_policy_attachment" "AmazonS3FullAccess" {
+  policy_arn = data.aws_iam_policy.AmazonS3FullAccess.arn
+  role       = aws_iam_role.ec2_role.name
+}
+
 resource "aws_iam_role_policy_attachment" "AmazonSSMManagedInstanceCore" {
   policy_arn = data.aws_iam_policy.AmazonSSMManagedInstanceCore.arn
   role       = aws_iam_role.ec2_role.name
