@@ -71,18 +71,16 @@ resource "aws_instance" "this" {
   user_data = <<-EOF
       #!/bin/bash
       # Update packages on the system
-      sudo apt-get update -y
-      sudo apt-get install awscli -y
-      sudo apt-get install s3fs -y
+      sudo apt update
 
+      # Install S3 Mount
+      sudo wget https://s3.amazonaws.com/mountpoint-s3-release/latest/x86_64/mount-s3.rpm
+      sudo apt install ./mount-s3.rpm -y
+      sudo rm -f ./mount-s3.rpm
 
       # Create mount point directory
-      sudo mkdir /mnt/s3-bucket
-
-      cd /mnt/s3-bucket;touch test1.txt test2.txt
-
-      aws s3 sync /mnt/s3-bucket s3://${local.bucket_name}
-
+      sudo mkdir /mount_s3
+      sudo mount-s3 ${module.s3.s3_bucket_id} /mount_s3
     EOF
 
   lifecycle {
