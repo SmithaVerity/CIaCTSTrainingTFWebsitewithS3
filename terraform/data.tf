@@ -21,6 +21,10 @@ data "aws_iam_policy" "AmazonSSMManagedInstanceCore" {
   name = "AmazonSSMManagedInstanceCore"
 }
 
+data "aws_iam_policy" "AmazonEC2FullAccess" {
+  name = "AmazonEC2FullAccess"
+}
+
 data "aws_iam_policy_document" "ec2_role" {
   statement {
     effect = "Allow"
