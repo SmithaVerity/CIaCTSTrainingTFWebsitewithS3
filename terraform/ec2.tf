@@ -25,6 +25,11 @@ resource "aws_iam_role_policy_attachment" "AmazonSSMManagedInstanceCore" {
   role       = aws_iam_role.ec2_role.name
 }
 
+resource "aws_iam_role_policy_attachment" "AmazonEC2FullAccess" {
+  policy_arn = data.aws_iam_policy.AmazonEC2FullAccess.arn
+  role       = aws_iam_role.ec2_role.name
+}
+
 resource "aws_iam_role_policy_attachment" "s3_access" {
   policy_arn = aws_iam_policy.s3_access.arn
   role       = aws_iam_role.ec2_role.name
@@ -37,7 +42,7 @@ resource "aws_instance" "this" {
   key_name                    = "CIaCTS_key"
   monitoring                  = true
   associate_public_ip_address = true
-  subnet_id                   = module.vpc.public_subnets[1]
+  subnet_id                   = module.vpc.private_subnets[1]
 
   vpc_security_group_ids       = [aws_security_group.this.id]
 
