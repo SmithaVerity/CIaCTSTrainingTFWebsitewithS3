@@ -35,8 +35,8 @@ resource "aws_instance" "this" {
   disable_api_termination = false
   ebs_optimized           = true
   iam_instance_profile    = aws_iam_instance_profile.this.name
-  instance_type           = "t3a.small"
-  key_name                = aws_key_pair.generated.key_name
+  instance_type           = "t2.micro"
+  key_name                = Verity53Sydneyppk
   monitoring              = true
   subnet_id               = module.vpc.private_subnets[1]
 
