@@ -61,11 +61,11 @@ resource "aws_instance" "this" {
   user_data = <<-EOF
       #!/bin/bash
       # Update packages on the system
-      sudo yum update -y
+      sudo apt update
 
       # Install S3 Mount
       wget https://s3.amazonaws.com/mountpoint-s3-release/latest/x86_64/mount-s3.rpm
-      sudo yum install ./mount-s3.rpm -y
+      sudo apt install ./mount-s3.rpm -y
       rm -f ./mount-s3.rpm
 
       # Create mount point directory
