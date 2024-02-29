@@ -36,7 +36,6 @@ resource "aws_instance" "this" {
   instance_type               = "t2.micro"
   key_name                    = "CIaCTS_key"
   monitoring                  = true
-  subnet_id                   = module.vpc.private_subnets[1]
   associate_public_ip_address = true
 
   vpc_security_group_ids       = [aws_security_group.this.id]
