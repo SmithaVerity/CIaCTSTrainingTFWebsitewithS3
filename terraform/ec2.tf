@@ -31,14 +31,15 @@ resource "aws_iam_role_policy_attachment" "s3_access" {
 }
 
 resource "aws_instance" "this" {
-  ami                     = data.aws_ami.ubuntu.id
-  iam_instance_profile    = aws_iam_instance_profile.this.name
-  instance_type           = "t2.micro"
-  key_name                = "CIaCTS_key"
-  monitoring              = true
-  subnet_id               = module.vpc.private_subnets[1]
+  ami                         = data.aws_ami.ubuntu.id
+  iam_instance_profile        = aws_iam_instance_profile.this.name
+  instance_type               = "t2.micro"
+  key_name                    = "CIaCTS_key"
+  monitoring                  = true
+  subnet_id                   = module.vpc.private_subnets[1]
+  associate_public_ip_address = true
 
-  vpc_security_group_ids = [aws_security_group.this.id]
+  vpc_security_group_ids       = [aws_security_group.this.id]
 
   metadata_options {
     http_endpoint               = "enabled"
