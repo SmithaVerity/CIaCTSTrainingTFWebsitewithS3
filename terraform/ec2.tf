@@ -31,7 +31,7 @@ resource "aws_iam_role_policy_attachment" "s3_access" {
 }
 
 resource "aws_instance" "this" {
-  ami                     = data.aws_ami.this.id
+  ami                     = "ami-03f4878755434977f"
   disable_api_termination = false
   ebs_optimized           = true
   iam_instance_profile    = aws_iam_instance_profile.this.name
