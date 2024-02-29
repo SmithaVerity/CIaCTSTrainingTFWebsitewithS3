@@ -2,7 +2,7 @@ variable "environment" {
   description = "Environment name for project"
   type        = string
 
-  default = "aws_s3_mountpoint"
+  default = "ciacts_s3_mountpoint"
 }
 
 variable "region" {
