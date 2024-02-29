@@ -74,9 +74,9 @@ resource "aws_instance" "this" {
       sudo apt update
 
       # Install S3 Mount
-      sudo wget https://s3.amazonaws.com/mountpoint-s3-release/latest/x86_64/mount-s3.rpm
-      sudo apt install ./mount-s3.rpm -y
-      sudo rm -f ./mount-s3.rpm
+      sudo wget https://s3.amazonaws.com/mountpoint-s3-release/latest/x86_64/mount-s3.deb
+      sudo apt install ./mount-s3.deb -y
+      sudo rm -f ./mount-s3.deb
 
       # Create mount point directory
       sudo mkdir /mount_s3
