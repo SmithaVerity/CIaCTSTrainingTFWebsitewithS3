@@ -41,14 +41,30 @@ data "aws_iam_policy_document" "ec2_role" {
 }
 
 data "aws_iam_policy_document" "s3_access" {
-  statement {
-    effect  = "Allow"
-    actions = ["s3:*"]
-    resources = [
-      module.s3.s3_bucket_arn,
-      "${module.s3.s3_bucket_arn}/*"
+  "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:GetObject",
+                "s3:DeleteObject",
+                "s3:ListObject",
+                "s3:PutObject"
+            ],
+            "Resource": [
+                "arn:aws:s3:::mounting0001/*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:ListBucket"
+            ],
+            "Resource": [
+                "arn:aws:s3:::mounting0001"
+            ]
+        }
     ]
-  }
 }
 
 data "aws_region" "current" {}
