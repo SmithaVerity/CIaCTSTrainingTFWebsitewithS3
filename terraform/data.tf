@@ -43,7 +43,10 @@ data "aws_iam_policy_document" "ec2_role" {
 data "aws_iam_policy_document" "s3_access" {
   statement {
     effect  = "Allow"
-    actions = ["s3:*"]
+    actions = [
+        "s3:*",
+        "s3-object-lambda:*"
+    ],
     resources = [
       module.s3.s3_bucket_arn,
       "${module.s3.s3_bucket_arn}/*"
