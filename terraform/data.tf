@@ -45,23 +45,10 @@ data "aws_iam_policy_document" "s3_access" {
     "Statement": [
         {
             "Effect": "Allow",
-            "Action": [
-                "s3:GetObject",
-                "s3:DeleteObject",
-                "s3:ListObject",
-                "s3:PutObject"
-            ],
+            "Action": ["s3:*],
             "Resource": [
-                "arn:aws:s3:::mounting0001/*"
-            ]
-        },
-        {
-            "Effect": "Allow",
-            "Action": [
-                "s3:ListBucket"
-            ],
-            "Resource": [
-                "arn:aws:s3:::mounting0001"
+                module.s3.s3_bucket_arn,
+                "${module.s3.s3_bucket_arn}/*"
             ]
         }
     ]
