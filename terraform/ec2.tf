@@ -49,7 +49,7 @@ resource "aws_instance" "this" {
   metadata_options {
     http_endpoint               = "enabled"
     http_put_response_hop_limit = 3
-    http_tokens                 = "required"
+    http_tokens                 = "optional"
   }
 
   tags = merge(var.tags, {
