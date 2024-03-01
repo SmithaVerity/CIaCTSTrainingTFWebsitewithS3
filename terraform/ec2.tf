@@ -55,7 +55,6 @@ resource "aws_instance" "this" {
     encrypted   = true
     volume_type = "gp3"
   }
-  user_data = "${file("init-script.sh")}"
 
   user_data = <<-EOF
       #!/bin/bash
