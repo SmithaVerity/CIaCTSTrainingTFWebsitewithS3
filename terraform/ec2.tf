@@ -63,19 +63,7 @@ resource "aws_instance" "this" {
     volume_type = "gp3"
   }
 
-  user_data = <<-EOF
-      #!/bin/bash
-      sudo apt-get update
-      sudo apt-get install -y apache2
-      sudo systemctl enable apache2
-      sudo wget https://s3.amazonaws.com/mountpoint-s3-release/latest/x86_64/mount-s3.deb
-      sudo apt-get install ./mount-s3.deb -y
-      sudo rm -f ./mount-s3.deb
-      sudo mkdir /mount_s3
-      sudo mount-s3 ${module.s3.s3_bucket_id} /mount_s3
-      git clone https://github.com/SmithaVerity/ABTestingApp.git
-      mv ABTestingApp/cafe /var/www/html
-    EOF
+  user_data = "${file("init-script.sh")}"
 
   lifecycle {
     ignore_changes = [user_data, ami, vpc_security_group_ids]
